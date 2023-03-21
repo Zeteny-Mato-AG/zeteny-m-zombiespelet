@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zombie Spel</title>
+</head>
+<body>
+    <script src="https://koda.nu/simple.js">
+        
+        document.body.style.backgroundImage = "url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.com%2Fpremium-vector%2Fpixel-art-shopping-street-with-shops-avenue-with-lamp-trees-cityscape-background-8bit-game_26431883.htm&psig=AOvVaw0q4x5YUJVuU5TuM37ejI33&ust=1679050476292000&source=images&cd=vfe&ved=0CA0QjRxqFwoTCMCI8tSk4P0CFQAAAAAdAAAAABAD')";
+
+        var zombies=[];
+
+        var i=0;
+
+        while(i<50)
+        {
+            zombies.push({x: random(totalWidth), 
+                    y: random(totalHeight),
+                    speed: random(1,5)});
+            i+=1;
+        }
+        
+        function play() {
+        var audio = new Audio('https://www.youtube.com/watch?v=8Oy9qERg8zs');
+        audio.play();
+        }
+
+        function update()
+        {
+            clearScreen();
+
+            var i=0;
+
+            while(i<50)
+            {
+                var zombie=zombies[i];
+
+                picture (zombie.x, zombie.y, "http://spelprogrammering.nu/bilder/zombie.png");
+            
+                if (zombie.x < mouse.x)
+                    zombie.x += zombie.speed;
+                else
+                    zombie.x -= zombie.speed;
+            
+                if (zombie.y < mouse.y)
+                    zombie.y += zombie.speed;
+                else
+                    zombie.y -= zombie.speed;
+
+                if (distance(mouse, zombie) < 5)
+                {
+                    text(100,100,50, "YOU DIED", "red");
+                    stopUpdate();
+                }
+                i +=1;
+            }
+        }
+
+    </script>
+</body>
+</html>
