@@ -8,14 +8,12 @@
 </head>
 <body>
     <script src="https://koda.nu/simple.js">
-        
-        document.body.style.backgroundImage = "url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.com%2Fpremium-vector%2Fpixel-art-shopping-street-with-shops-avenue-with-lamp-trees-cityscape-background-8bit-game_26431883.htm&psig=AOvVaw0q4x5YUJVuU5TuM37ejI33&ust=1679050476292000&source=images&cd=vfe&ved=0CA0QjRxqFwoTCMCI8tSk4P0CFQAAAAAdAAAAABAD')";
 
         var zombies=[];
 
         var i=0;
 
-        while(i<50)
+        while(i<10)
         {
             zombies.push({x: random(totalWidth), 
                     y: random(totalHeight),
@@ -28,31 +26,47 @@
         audio.play();
         }
 
+        var player = {x:100, y:100};
+
+        hideMouse();
+
         function update()
         {
-            clearScreen();
+            fill("blue");
+
+            circle(player.x, player.y, 30, "red");
+            
+            if (keyboard.d)
+                player.x += 7;
+            if (keyboard.a)
+                player.x -= 7;
+            if (keyboard.w)
+                player.y -= 7;
+            if (keyboard.s)
+                player.y += 7;
 
             var i=0;
 
-            while(i<50)
+            while(i<10)
             {
                 var zombie=zombies[i];
 
-                picture (zombie.x, zombie.y, "http://spelprogrammering.nu/bilder/zombie.png");
+                picture (zombie.x, zombie.y, "./images/zombie.png");
             
-                if (zombie.x < mouse.x)
+                if (zombie.x < player.x)
                     zombie.x += zombie.speed;
                 else
                     zombie.x -= zombie.speed;
             
-                if (zombie.y < mouse.y)
+                if (zombie.y < player.y)
                     zombie.y += zombie.speed;
                 else
                     zombie.y -= zombie.speed;
 
-                if (distance(mouse, zombie) < 5)
+                if (distance(player, zombie) < 5)
                 {
                     text(100,100,50, "YOU DIED", "red");
+                    showMouse();
                     stopUpdate();
                 }
                 i +=1;
