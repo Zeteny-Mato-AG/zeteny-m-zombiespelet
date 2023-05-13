@@ -3,21 +3,21 @@
     position: relative;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(119, 86, 158);
-    color: white;
-    margin: -8px;
-    margin-top: 41%;
-    height: 142px;
+    background-color: rgb(119, 86, 158); /* Set the background color of the controls section to a specific RGB color*/
+    color: white; /* Set the text color to white*/
+    margin: -8px; /* Set negative margin to adjust spacing*/
+    margin-top: 41%; /* Set top margin to adjust vertical positioning*/
+    height: 142px; /* Set the height of the controls section*/
 }
 
 .instructions {
-    display: flex;
+    display: flex; /* Display the instructions section as a flex container*/
 }
 
 h4 {
-    padding: 10px;
+    padding: 10px; /* Add padding to the h4 elements*/
 }
 
 body {
-    background-image: url("https://cdna.artstation.com/p/assets/images/images/000/274/124/large/WeiWang_concept3_orange8_art443.jpg?1414526652");
+    background-image: url("https://cdna.artstation.com/p/assets/images/images/000/274/124/large/WeiWang_concept3_orange8_art443.jpg?1414526652"); /* Set the background image of the body*/
 }
