@@ -15,9 +15,9 @@ let playerImage = "./images/player-right.png";
 function gun() {
     if (mouse.left && bulletCooldown === 0) { // Check if left mouse button is pressed and bullet cooldown is 0
         bullet.push(
-            { x: player.x, y: player.y, size: 10, xSpeed: 7 * (mouse.x - player.x) / distance(player, mouse), ySpeed: 7 * (mouse.y - player.y) / distance(player, mouse) }
+            { x: player.x, y: player.y, size: 5, xSpeed: 7 * (mouse.x - player.x) / distance(player, mouse), ySpeed: 7 * (mouse.y - player.y) / distance(player, mouse) }
         ); // Add a bullet object to the bullet array
-        bulletCooldown = 20; // Set bullet cooldown
+        bulletCooldown = 10; // Set bullet cooldown
     }
     if (bulletCooldown > 0) {
         bulletCooldown--; // Decrease bullet cooldown
@@ -28,7 +28,7 @@ function update() {
     gun(); // Call the gun function to handle shooting
     clearScreen(); // Clear the screen
     if (zombies.length < 10) { // Check if the number of zombies is less than 10
-        zombies.push({ x: random(600), y: random(600), health: 5, iFrames: 0 }); // Add a new zombie object to the zombies array
+        zombies.push({ x: random(600), y: random(600), health: 10, iFrames: 0 }); // Add a new zombie object to the zombies array
     }
     for (i = 0; i < zombies.length; i++) {
         if (zombies[i].iFrames > 0) { zombies[i].iFrames--; } // Decrease the zombie's invincibility frames
@@ -110,7 +110,7 @@ function update() {
     }    
 
     for (var i = 0; i < bullet.length; i++) {
-        rectangle(bullet[i].x, bullet[i].y, bullet[i].size, bullet[i].size, "yellow"); // Display the bullet as a yellow rectangle
+        circle(bullet[i].x, bullet[i].y, bullet[i].size, "yellow"); // Display the bullet as a yellow circle
         bullet[i].x += bullet[i].xSpeed; // Move the bullet along the x-axis
         bullet[i].y += bullet[i].ySpeed; // Move the bullet along the y-axis
     }
