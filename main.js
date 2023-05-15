@@ -24,12 +24,15 @@ function gun() {
     }
 }
 
+var themesong = new Audio("./music/themesong.mp3"); // Create a new audio element for the theme song
+
 function update() {
     gun(); // Call the gun function to handle shooting
     clearScreen(); // Clear the screen
     if (zombies.length < 10) { // Check if the number of zombies is less than 10
         zombies.push({ x: random(600), y: random(600), health: 10, iFrames: 0 }); // Add a new zombie object to the zombies array
     }
+    themesong.play()
     for (i = 0; i < zombies.length; i++) {
         if (zombies[i].iFrames > 0) { zombies[i].iFrames--; } // Decrease the zombie's invincibility frames
         for (j = 0; j < bullet.length; j++) {
@@ -50,6 +53,8 @@ function update() {
 
     for (i = 0; i < zombies.length; i++) {
         if (zombies[i].health == 0) {
+            var zombiedeathsound = new Audio("./music/zombiedeathsound.mp3"); // Create a new audio element for the zombie death sound
+            zombiedeathsound.play(); // Play the zombie death sound
             score++; // Increase the score when a zombie is defeated
             zombies.splice(i, 1, { x: random(600), y: random(600), health: 6, iFrames: 0 }); // Replace the defeated zombie with a new one
         }
@@ -120,7 +125,11 @@ function update() {
     }
     
     if (player.health == 0) {
-        alert("GAME OVER!"); // Display a game over message
+        themesong.pause(); // Pause the theme song
+        var playerdeathsound = new Audio("./music/playerdeathsound.mp3"); // Create a new audio element for the player death sound
+        playerdeathsound.play(); // Play the player death sound
+        text(200, 100, 100, "GAME OVER!", "white"); // Display the text "GAME OVER!" in white color at coordinates (200, 100)
+
         stopUpdate(); // Stop the game update loop
     }
     
