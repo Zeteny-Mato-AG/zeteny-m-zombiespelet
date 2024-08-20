@@ -15,7 +15,7 @@ let playerImage = "./images/player-right.png";
 function gun() {
     if (mouse.left && bulletCooldown === 0) { // Check if left mouse button is pressed and bullet cooldown is 0
         bullet.push(
-            { x: player.x, y: player.y, size: 5, xSpeed: 7 * (mouse.x - player.x) / distance(player, mouse), ySpeed: 7 * (mouse.y - player.y) / distance(player, mouse) }
+            { x: player.x, y: player.y, size: 5, xSpeed: 20 * (mouse.x - player.x) / distance(player, mouse), ySpeed: 7 * (mouse.y - player.y) / distance(player, mouse) }
         ); // Add a bullet object to the bullet array
         bulletCooldown = 10; // Set bullet cooldown
     }
@@ -48,7 +48,7 @@ function update() {
         if (zombies[i].x < player.x) { zombies[i].x++; } else { zombies[i].x--; } // Move zombies towards the player on the x-axis
         if (zombies[i].y < player.y) { zombies[i].y++; } else { zombies[i].y--; } // Move zombies towards the player on the y-axis
         picture(zombies[i].x - 50, zombies[i].y - 50, "./images/zombie.png"); // Display the zombie's image
-        rectangle(zombies[i].x - 25, zombies[i].y - 50, zombies[i].health * 10, 6, "green"); // Display the zombie's health bar
+        rectangle(zombies[i].x - 25, zombies[i].y - 50, zombies[i].health * 10, 5, "green"); // Display the zombie's health bar
     }
 
     for (i = 0; i < zombies.length; i++) {
@@ -67,20 +67,20 @@ function update() {
     player.ySpeed = 0;
     
     if (keyboard.w) {
-        player.ySpeed -= 5; // Move the player up
+        player.ySpeed -= 10; // Move the player up
     }
     
     if (keyboard.s) {
-        player.ySpeed += 5; // Move the player down
+        player.ySpeed += 10; // Move the player down
     }
     
     if (keyboard.a) {
-        player.xSpeed -= 5; // Move the player left
+        player.xSpeed -= 10; // Move the player left
         playerImage = "./images/player-left.png"; // Set the player's image to face left
     }
     
     if (keyboard.d) {
-        player.xSpeed += 5; // Move the player right
+        player.xSpeed += 10; // Move the player right
         playerImage = "./images/player-right.png"; // Set the player's image to face right
     }
     
